@@ -112,21 +112,68 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
 #The graphs will look the same. Graph #2 just uses more code.
 
 #practice 3.6.6
+#Graph 1
 ggplot(data = mpg, aes(x = displ, y = hwy)) +
   geom_point(stroke = 3) +
   geom_smooth(se = FALSE)
 
+#Graph 2 - needs correction
 ggplot(data = mpg, aes(x = displ, y = hwy)) +
   geom_point(stroke = 3) +
   geom_smooth(se = FALSE, linetype = drv)
 
+#Graph 3
 ggplot(data = mpg, aes(x = displ, y = hwy, color = drv)) +
   geom_point(stroke = 3) +
   geom_smooth(se = FALSE)
 
+#Graph 4
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, stroke = 3, color = drv)) +
   geom_smooth(mapping = aes(x = displ, y = hwy), se = FALSE)
 
+#Graph 5
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = drv), stroke = 3) +
+  geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv), se = FALSE)
 
-  
+#Graph 6
+ggplot(data = mpg) +
+  geom_point(aes(x = displ, y = hwy, color = drv), stroke = 3)
+
+#Practice 3.7.1
+#stat_summary() is similar to a boxplot. This could serve as a fair replacement.
+
+#Practice 3.7.2
+ggplot(data = mpg) +
+  geom_col(aes(x = displ, y = hwy))
+#geom_col() works with an x and y value, while geom_bar() works with a count of x value
+
+#Practice 3.7.3
+
+#Practice 3.7.4
+#stat_smooth() computes predicted value and upper/lower confidence intervals aroun the mean
+
+#Practice 3.7.5
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = after_stat(prop)))
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = color, y = after_stat(prop)))
+
+#Practice 3.8.1
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_point(position = "jitter")
+#The plot has an 'overplotting' issue. Setting the position to "jitter" allows a better visual for density of points.
+
+#Practice 3.8.2
+
+
+#Practice 3.8.3
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_jitter()
+#geom_jitter() allows for overlapping of points to show density, while geom_count sizes the points by density.
+
+#Practice 3.8.4
+#The default position for geom_boxplot() is "dodge2".
+ggplot(data = mpg) + 
+  geom_boxplot(mapping = aes(x = drv, y = hwy))
