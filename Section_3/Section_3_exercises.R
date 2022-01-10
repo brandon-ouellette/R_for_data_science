@@ -177,3 +177,19 @@ ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
 #The default position for geom_boxplot() is "dodge2".
 ggplot(data = mpg) + 
   geom_boxplot(mapping = aes(x = drv, y = hwy))
+
+#Practice 3.9.1
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = color, y = after_stat(prop))) +
+  coord_polar()
+
+#Practice 3.9.2
+#labs() allows you to change the labels of the axis, legend, plot.
+
+#Practice 3.9.3
+
+#Practice 3.9.4
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
+  geom_point() + 
+  geom_abline() +
+  coord_fixed()
