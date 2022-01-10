@@ -112,3 +112,21 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
 #The graphs will look the same. Graph #2 just uses more code.
 
 #practice 3.6.6
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point(stroke = 3) +
+  geom_smooth(se = FALSE)
+
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point(stroke = 3) +
+  geom_smooth(se = FALSE, linetype = drv)
+
+ggplot(data = mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point(stroke = 3) +
+  geom_smooth(se = FALSE)
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, stroke = 3, color = drv)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy), se = FALSE)
+
+
+  
