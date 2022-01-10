@@ -56,3 +56,33 @@ ggplot(data = mpg) +
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = displ < 5))
 #the above plot adds a logical expression to the color aesthetic to color a point based on a "True" or "False" result
+
+#practice question 3.5.1
+
+
+#practice question 3.5.2
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = drv, y = cyl)) +
+  facet_grid(drv ~ cyl)
+
+#practice question 3.5.3
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+#in this instance '.' acts as command to segment each facet by the variable identified
+
+#practice 3.5.4
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class, nrow = 2)
+#the advantage to faceting is the reduction of clutter and clear views of the individual variable measurements.
+#the disadvantage would be if you are trying to facet by a variable that has many unique values. Too many graphs would not be helpful.
+
+#practice 3.5.5
+?facet_wrap
+#nrow and ncol indicates the desired number of rows and columns to display the facets by.
+#
