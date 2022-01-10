@@ -86,3 +86,29 @@ ggplot(data = mpg) +
 ?facet_wrap
 #nrow and ncol indicates the desired number of rows and columns to display the facets by.
 #
+?facet_grid
+#
+
+#practice 3.5.6
+
+
+#practice 3.6.1
+#geom_line()
+#geom_boxplot()
+#geom_histogram()
+
+#practice 3.6.2
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+
+#practice 3.6.3
+#show.legend = FALSE will remove the key from the graph.
+
+#practice 3.6.4
+#the 'se' argument displays the confidence level around the line.
+
+#practice 3.6.5
+#The graphs will look the same. Graph #2 just uses more code.
+
+#practice 3.6.6
