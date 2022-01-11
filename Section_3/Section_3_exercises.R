@@ -151,6 +151,7 @@ ggplot(data = mpg) +
 
 #Practice 3.7.3
 
+
 #Practice 3.7.4
 #stat_smooth() computes predicted value and upper/lower confidence intervals aroun the mean
 
@@ -166,7 +167,7 @@ ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
 #The plot has an 'overplotting' issue. Setting the position to "jitter" allows a better visual for density of points.
 
 #Practice 3.8.2
-
+#Width and height control the amount of jittering.
 
 #Practice 3.8.3
 ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
@@ -187,9 +188,13 @@ ggplot(data = diamonds) +
 #labs() allows you to change the labels of the axis, legend, plot.
 
 #Practice 3.9.3
+#coord_map() does not preserve straight lines while coord_quickmap() does.
 
 #Practice 3.9.4
 ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
   geom_point() + 
   geom_abline() +
   coord_fixed()
+#The plot tells us there is a linear relationship between cty and hwy. As cty increases so does hwy.
+#coord_fixed() is important because it fixes the aspect ratio to better show x and y relationships.
+#geom_abline() shows the slope of the data in a linear format.
