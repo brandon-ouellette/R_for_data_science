@@ -62,5 +62,22 @@ flights %>%
 select(flights, contains("TIME"))
 #the result is surprising. case does not seem to matter by default in the select function.
 
+#Practice 5.5.2.1
 
 
+#Practice 5.5.2.2
+flights %>%
+  transmute(air_time, air_time_calc = (arr_time - dep_time))
+#I would expect to see these columns be equal, but it looks like the calc column is consistently higher.
+
+
+#Practice 5.5.2.3
+flights %>%
+  select(dep_time, sched_dep_time, dep_delay)
+#dep_time minus sched_dep_time should equal dep_delay.
+
+#Practice 5.5.2.4
+flights %>%
+  transmute(min_rank(arr_delay))
+
+            
