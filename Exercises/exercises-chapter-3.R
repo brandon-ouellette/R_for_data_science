@@ -1,27 +1,36 @@
-#load library
+
+
+
+# setup -------------------------------------------------------------------
+
 library(tidyverse)
 
-#example plot
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy))
 
-#exercise question 3.2.4.1
+# 3.2.4 - plotting basics -------------------------------------------------
+
+# exercise 3.2.4.1
+ggplot(data = mpg)
 ## running ggplot(data = mpg) does not produce any results due to lack of mapping
 
-#exercise question 3.2.4.2
+
+# exercise 3.2.4.2
 mpg
 #mpg has 234 rows and 11 columns
 
-#exercise question 3.2.4.3
-##drv describes the type of drive train the vehicle has
 
-#exercise question 3.2.4.4
+# exercise 3.2.4.3
+?mpg
+## drv describes the type of drive train the vehicle has
+
+
+# exercise 3.2.4.4
 ggplot(data = mpg) + 
   geom_point(mapping = aes(cyl, hwy))
 
-#exercise question 3.2.4.5
+
+# exercise 3.2.4.5
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(drv, class))
+  geom_point(mapping = aes(class, drv))
 #plot is not useful as it is a mesure of two categoricals and does not provide any insight
 
 #example plot with color groupings
@@ -32,40 +41,57 @@ ggplot(data = mpg) +
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, size = class))
 
-#practice question 3.3.1.1
+
+
+
+# 3.3.1 - aesthetics ------------------------------------------------------
+
+# exercise 3.3.1.1
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, fill = "blue"))
-#corrected - color alters border color while fill alters point fill color
+## corrected - color alters border color while fill alters point fill color
 
-#practice question 3.3.2.2
+# exercise 3.3.1.2
+?mpg
+## manufacturer, model, cyl, trans, drv, fl, class are all categorical variables
+## displ, year, cty, hwy are continuous variables
 
-
-#practice question 3.3.1.3
+# exercise 3.3.1.3
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = year))
-#continuous variables will show as sloping trends while categorical will show as grouped
+## continuous variables will show as sloping trends while categorical will show as grouped
 
-#practice question 3.3.1.4
+# exercise 3.3.1.4
+ggplot(mpg) +
+  geom_point(aes(hwy, hwy))
+## mapping the same variable to multiple aesthetics creates a 1:1 sloping line
 
-#practice question 3.3.1.5
+# exercise 3.3.1.5
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, fill = "blue", stroke = 1.5))
-#stroke alters the thinkness of the shape border
+## stroke alters the thinkness of the shape border
 
-#practice question 3.3.1.6
+# exercise 3.3.1.6
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = displ < 5))
-#the above plot adds a logical expression to the color aesthetic to color a point based on a "True" or "False" result
-
-#practice question 3.5.1
+## the above plot adds a logical expression to the color aesthetic to color a point based on a "True" or "False" result
 
 
-#practice question 3.5.2
+# 3.5.1 - faceting --------------------------------------------------------
+
+# exercise 3.5.1.1
+ggplot(mpg) +
+  geom_point(aes(displ, hwy)) +
+  facet_wrap(~cty)
+## faceting on a continuous variable creates as many small plots as there are unique instances of the variable
+
+# exercise 3.5.1.2
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = drv, y = cyl)) +
   facet_grid(drv ~ cyl)
+## empty cells mean there are no observations of that combination of drv and cyl.
 
-#practice question 3.5.3
+# exercise 3.5.1.3
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_grid(drv ~ .)
@@ -73,14 +99,14 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_grid(. ~ cyl)
-#in this instance '.' acts as command to segment each facet by the variable identified
+## in this instance '.' acts as command to segment each facet by the variable identified
 
-#practice 3.5.4
+# exercise 3.5.1.4
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_wrap(~ class, nrow = 2)
-#the advantage to faceting is the reduction of clutter and clear views of the individual variable measurements.
-#the disadvantage would be if you are trying to facet by a variable that has many unique values. Too many graphs would not be helpful.
+## the advantage to faceting is the reduction of clutter and clear views of the individual variable measurements.
+## the disadvantage would be if you are trying to facet by a variable that has many unique values. Too many graphs would not be helpful.
 
 #practice 3.5.5
 ?facet_wrap
@@ -91,6 +117,8 @@ ggplot(data = mpg) +
 
 #practice 3.5.6
 
+
+# 3.6.1 - geoms -----------------------------------------------------------
 
 #practice 3.6.1
 #geom_line()
@@ -141,6 +169,9 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   geom_point(aes(x = displ, y = hwy, color = drv), stroke = 3)
 
+
+# 3.7.1 - stat transformations --------------------------------------------
+
 #Practice 3.7.1
 #stat_summary() is similar to a boxplot. This could serve as a fair replacement.
 
@@ -160,6 +191,9 @@ ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut, y = after_stat(prop)))
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, fill = color, y = after_stat(prop)))
+
+
+# 3.8.1 - position adjustments --------------------------------------------
 
 #Practice 3.8.1
 ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
